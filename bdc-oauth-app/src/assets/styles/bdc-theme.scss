@@ -1,0 +1,20 @@
+@import '~@angular/material/theming';
+
+:root {
+  --mainColor: #00420c;
+  --mainGrey: #A0A1A1;
+  --mainBgPrimary: #19882c;
+  --mainBgDark: #00420c;
+  --mainBgLight: #EFEFEF;
+  --mainFont: "Roboto", "Helvetica Neue", sans-serif;
+}
+
+$bdc_theme-primary: mat-palette($mat-blue);
+$bdc_theme-accent : mat-palette($mat-green);
+$bdc_theme-warn   : mat-palette($mat-red);
+
+$bdc_theme: mat-light-theme(
+  $bdc_theme-primary,
+  $bdc_theme-accent,
+  $bdc_theme-warn
+);

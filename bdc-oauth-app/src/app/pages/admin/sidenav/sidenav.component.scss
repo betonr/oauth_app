@@ -1,0 +1,30 @@
+@import 'src/assets/styles/sidenav-base.scss';
+
+.links {
+    border-top: 1px solid var(--mainBgPrimary);
+    display: flex;
+    flex-direction: column;
+
+    .link {
+        display: flex;
+        align-items: center;
+        width: calc(100% - 40px);
+        padding: 15px 20px;
+        background: rgba(#FFF, 0.8);
+        font-size: 1em;
+        cursor: pointer;
+        font-family: var(--mainFont);
+
+        .mat-icon {
+            margin-right: 15px;
+        }
+
+        &:hover {
+            background: rgba(#000, 0.05);
+        }
+
+        &.active {
+            background: rgba(#000, 0.1);
+        }
+    }
+}

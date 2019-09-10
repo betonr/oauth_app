@@ -1,0 +1,51 @@
+// DEFAULT
+body {
+    padding: 0;
+    margin: 0;
+}
+
+// ANGULAR MATERIAL - THEMES
+@import 'assets/styles/bdc-theme.scss';
+@include mat-core();
+@include angular-material-theme($bdc_theme);
+
+.mat-drawer-side {
+    border-right: none;
+    box-shadow: 3px 0px 6px rgba(#000, 0.2);
+}
+
+.mat-form-field {
+    width: 100%;
+    padding: 0 5px;
+}
+
+.mat-radio-button.mat-accent.mat-radio-checked {
+    color: var(--mainBgPrimary) !important;
+
+    .mat-radio-inner-circle {
+        background-color: var(--mainBgPrimary) !important;
+    }
+
+    .mat-radio-outer-circle {
+        border-color: var(--mainBgPrimary) !important;
+    }
+}
+
+.app_snack-bar-success {
+    background: rgba(#339966, 0.9);
+    color: #ffffff;
+}
+
+.app_snack-bar-error {
+    background: rgba(#ff4d4d, 0.9);
+    color: #ffffff;
+}
+
+.mat-slider-track-fill, .mat-slider-thumb, .mat-slider-thumb-label {
+    background-color: gray !important;
+}
+
+.mat-form-field {
+  margin-bottom: 10px !important;
+  padding: 0 !important;
+}

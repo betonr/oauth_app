@@ -1,0 +1,42 @@
+.sidenav {
+    display: flex;
+    height: 100%;
+    background: var(--mainBgLight);
+    overflow: auto;
+
+    .container-sidenav {
+        display: flex;
+        flex-direction: column;
+        justify-content: stretch;
+        width: 299px;
+
+        header {
+            .title {
+                font-family: var(--mainFont);
+                font-size: 1.5em;
+                color: var(--mainColor);
+                padding: 15px 0;
+                text-align: center;
+                font-weight: 700;
+            }
+        }
+    }
+
+    /* SCROLL */
+    &::-webkit-scrollbar {
+        width: 4px;
+    }
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background: var(--mainBgDark);
+    }
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: rgba(#FFF, 0.3);
+        border-radius: 5px;
+    }
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+        background: rgba(#FFF, 0.3);
+    }
+}
