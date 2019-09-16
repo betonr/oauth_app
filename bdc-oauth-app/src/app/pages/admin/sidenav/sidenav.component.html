@@ -2,7 +2,7 @@
     <div class="container-sidenav">
         <header>
           <p class="title">
-            DPI - OAuth Server
+            OBT - OAuth Server
           </p>
         </header>
 
@@ -10,6 +10,7 @@
           <div *ngFor="let link of links">
             <div [ngClass]="pathActive === link.group ? 'link active': 'link'"
               [routerLink]="link.path"
+              (click)="changePage()"
               *ngIf="link.enabled === true">
                 <mat-icon>{{ link.icon }}</mat-icon> <strong>{{ link.title }}</strong>
             </div>

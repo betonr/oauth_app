@@ -1,0 +1,48 @@
+@import 'src/assets/styles/admin-page-base.scss';
+
+.admin-myprofile_infos {
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: 1px solid var(--mainColor);
+
+    p {
+        margin: 5px 0;
+    }
+}
+
+.edit-user {
+    padding: 10px;
+
+    .admin-myprofile_form_infos {
+        display: flex;
+    }
+
+    .admin-myprofile_form_password {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        border: 1px solid #CCC;
+        border-radius: 10px;
+        margin: 0 0 25px 0;
+
+        .mat-checkbox {
+            margin: 5px 15px;
+        }
+
+        .inline-block {
+            margin-top: 10px;
+            display: flex;
+            margin-bottom: -15px;
+        }
+    }
+
+    button {
+        color: #FFF;
+        display: block;
+        margin: 0 auto;
+        font-size: 1.2em;
+    }
+}
