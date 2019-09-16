@@ -1,6 +1,6 @@
 # Portal - WEB APPLICATION
 
-Web App to manage DPI Oauth Server 
+Web App to manage OBT Oauth Server 
 
 - [`Documentation`](https://github.com/brazil-data-cube/oauth-app/tree/master/docs)
 

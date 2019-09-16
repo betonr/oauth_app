@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 @Injectable({ providedIn: 'root' })
 export class UsersService {
 
-    /** url base of oauth server DPI */
+    /** url base of oauth server OBT */
     private urlOauth = window['__env'].urlOauth;
 
     /** start http service client */
@@ -34,6 +34,48 @@ export class UsersService {
         const urlSuffix = `/users/`;
         const authenticationToken = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user'))['token'] : '';
         const response = await this.http.post(`${this.urlOauth}${urlSuffix}`, data, {
+            headers: {
+                Authorization: `Bearer ${authenticationToken}`
+            }
+        }).toPromise();
+        return response;
+    }
+
+    /**
+     * edit Basic User
+     */
+    public async update(userId: string, data: object): Promise<any> {
+        const urlSuffix = `/users/${userId}`;
+        const authenticationToken = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user'))['token'] : '';
+        const response = await this.http.put(`${this.urlOauth}${urlSuffix}`, data, {
+            headers: {
+                Authorization: `Bearer ${authenticationToken}`
+            }
+        }).toPromise();
+        return response;
+    }
+
+    /**
+     * change user password
+     */
+    public async changePass(userId: string, data: object): Promise<any> {
+        const urlSuffix = `/users/change-password/${userId}`;
+        const authenticationToken = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user'))['token'] : '';
+        const response = await this.http.put(`${this.urlOauth}${urlSuffix}`, data, {
+            headers: {
+                Authorization: `Bearer ${authenticationToken}`
+            }
+        }).toPromise();
+        return response;
+    }
+
+    /**
+     * edit User
+     */
+    public async getUserById(userId: string): Promise<any> {
+        const urlSuffix = `/users/${userId}`;
+        const authenticationToken = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user'))['token'] : '';
+        const response = await this.http.get(`${this.urlOauth}${urlSuffix}`, {
             headers: {
                 Authorization: `Bearer ${authenticationToken}`
             }

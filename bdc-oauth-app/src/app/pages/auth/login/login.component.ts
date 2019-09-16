@@ -56,10 +56,9 @@ export class LoginComponent {
           password: this.password
         };
         const response = await this.as.login(credentials);
-        // TODO: 
         this.store.dispatch(Login({
           userId  : response.user_id,
-          grants : ['admin'],
+          grants : response.grants,
           token : response.access_token
         }));
         this.error = {};
