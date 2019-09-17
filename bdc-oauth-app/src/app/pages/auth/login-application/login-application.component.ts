@@ -1,36 +1,53 @@
 import { Component, OnInit } from '@angular/core';
-import { MatSnackBar } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { closeLoading, showLoading } from 'src/app/app.action';
 import { Store, select } from '@ngrx/store';
 import { AppState } from 'src/app/app.state';
-import { Login } from '../auth.action';
-import { Router } from '@angular/router';
+import { Login, Logout } from '../auth.action';
+import { Router, ActivatedRoute } from '@angular/router';
 
 /**
  * login page component
  */
 @Component({
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  templateUrl: './login-application.component.html',
+  styleUrls: ['./login-application.component.scss']
 })
-export class LoginComponent {
+export class LoginApplicationComponent implements OnInit {
 
   public username: string;
   public password: string;
   public formLogin: FormGroup;
   public error: object;
+  public token: string;
+  public application: string;
+  public url: string;
+  public scope: string;
+
+  ngOnInit(): void {
+    this.url = this.route.snapshot.queryParams['url'];
+    this.scope = this.route.snapshot.queryParams['scope'];
+    this.application = this.route.snapshot.paramMap['params'].app_name;
+
+    if (!this.application) {
+      this.router.navigate(['/auth/login']);
+    } else {
+      if (this.token) {
+        this.loginWithToken();
+      }
+    }
+  }
 
   constructor(
     private as: AuthService,
     private store: Store<AppState>,
+    private route: ActivatedRoute,
     public router: Router,
-    private snackBar: MatSnackBar,
     private fb: FormBuilder) {
       this.store.pipe(select('auth')).subscribe(res => {
         if (res.userId && res.token && res.grants) {
-          this.router.navigate(['/admin/users']);
+          this.token = res.token;
         }
       });
 
@@ -38,6 +55,23 @@ export class LoginComponent {
         username: ['', [Validators.required]],
         password: ['', [Validators.required]]
       });
+  }
+
+  private async loginWithToken() {
+    if (this.token) {
+      try {
+        this.store.dispatch(showLoading());
+        const response = await this.as.token(this.token, this.application, this.scope || null);
+        this.redirect(response['callback'], response['token']);
+
+      } catch (err) {
+        this.store.dispatch(Logout());
+        window.location.href = this.router.url;
+
+      } finally {
+        this.store.dispatch(closeLoading());
+      }
+    }
   }
 
   public async login() {
@@ -55,19 +89,16 @@ export class LoginComponent {
           password: this.password
         };
         const response = await this.as.login(credentials);
+        const responseToken = await this.as.token(response.access_token, this.application, this.scope || null);
+
         this.store.dispatch(Login({
           userId  : response.user_id,
           grants : response.grants,
           token : response.access_token
         }));
         this.error = {};
-        this.router.navigate(['/admin/users']);
-        
-        this.snackBar.open('Login Successfully!', '', {
-          duration: 2000,
-          verticalPosition: 'top',
-          panelClass: 'app_snack-bar-success'
-        });
+
+        this.redirect(responseToken['callback'], responseToken['token']);
 
       } catch (err) {
         const message = err.error.message ? err.error.message : 'Authentication Error!';
@@ -80,6 +111,14 @@ export class LoginComponent {
         this.store.dispatch(closeLoading());
       }
     }
+  }
+
+  private redirect(baseUrl: string, token: string) {
+    let url = `${baseUrl}?token=${token}`;
+    if (this.scope) {
+      url += `&scope=${this.scope}`;
+    }
+    window.location.href = url;
   }
 
 }
