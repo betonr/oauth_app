@@ -62,7 +62,7 @@ export class LoginApplicationComponent implements OnInit {
       try {
         this.store.dispatch(showLoading());
         const response = await this.as.token(this.token, this.application, this.scope || null);
-        this.redirect(response['callback'], response['token']);
+        this.redirect(response['callback'], this.token, response['token']);
 
       } catch (err) {
         this.store.dispatch(Logout());
@@ -98,7 +98,7 @@ export class LoginApplicationComponent implements OnInit {
         }));
         this.error = {};
 
-        this.redirect(responseToken['callback'], responseToken['token']);
+        this.redirect(responseToken['callback'], response.access_token, responseToken['token']);
 
       } catch (err) {
         const message = err.error.message ? err.error.message : 'Authentication Error!';
@@ -113,8 +113,8 @@ export class LoginApplicationComponent implements OnInit {
     }
   }
 
-  private redirect(baseUrl: string, token: string) {
-    let url = `${baseUrl}?token=${token}`;
+  private redirect(baseUrl: string, accessToken: string, token: string) {
+    let url = `${baseUrl}?access_token=${accessToken}&token=${token}`;
     if (this.scope) {
       url += `&scope=${this.scope}`;
     }
