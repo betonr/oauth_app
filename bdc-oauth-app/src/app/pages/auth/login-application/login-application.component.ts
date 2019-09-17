@@ -115,9 +115,8 @@ export class LoginApplicationComponent implements OnInit {
 
   private redirect(baseUrl: string, accessToken: string, token: string) {
     let url = `${baseUrl}?access_token=${accessToken}&token=${token}`;
-    if (this.scope) {
-      url += `&scope=${this.scope}`;
-    }
+    if (this.scope) url += `&scope=${this.scope}`;
+    if (this.url) url += `&url=${this.url}`;    
     window.location.href = url;
   }
 
