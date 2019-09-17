@@ -14,7 +14,7 @@ export class AuthService {
     constructor(private http: HttpClient) { }
 
     /**
-     * login in DPI Oauth
+     * login in OBT Oauth
      */
     public async login(credentials: object): Promise<any> {
         const urlSuffix = `/auth/login`;

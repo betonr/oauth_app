@@ -1,0 +1,94 @@
+<section class="container-page__admin">
+    <!-- TITLE -->
+    <div class="admin-title">
+        <div class="title">
+            <span class="title-group">my /</span>
+            <span class="title-sub-group">Profile</span>
+        </div>
+    </div>
+
+    <!-- BOX INFO USER -->
+    <div class="admin-myprofile_infos" *ngIf="userInfo">
+        <p><b>Name:</b> {{ userInfo.name }}</p>
+        <p><b>E-mail:</b> {{ userInfo.email }}</p>
+        <p><b>Username:</b> {{ userInfo.credential.username }}</p>
+        <p><b>Create at:</b> {{ getDateFormated(userInfo.created_at) }}</p>
+    </div>
+
+    <form [formGroup]="formEditUser"
+        (ngSubmit)="update()"
+        class="edit-user">
+
+        <!-- BOX FORM ADITIONAL INFOS -->
+        <div class="admin-myprofile_form_infos">
+            <mat-form-field appearance="fill">
+                <mat-label>Institution</mat-label>
+                <input matInput
+                    name="institution"
+                    formControlName="institution"
+                    required
+                    [(ngModel)]="aditionalInfos.institution">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" style="margin-left: 5px;">
+                <mat-label>Occupation</mat-label>
+                <input matInput
+                    name="occupation"
+                    formControlName="occupation"
+                    [(ngModel)]="aditionalInfos.occupation">
+            </mat-form-field>
+        </div>
+
+
+        <!-- BOX FORM PASSWORD -->
+        <div class="admin-myprofile_form_password">
+            <mat-checkbox [(ngModel)]="changePassword" formControlName="changePassword">Change Password ?</mat-checkbox>
+
+            <div class="inline-block" [hidden]="!changePassword">
+                <mat-form-field appearance="fill">
+                    <mat-label>Actual Password</mat-label>
+                    <input matInput 
+                        placeholder="actual password"
+                        formControlName="old_password"
+                        [(ngModel)]="pass.old_password"
+                        [required]="changePassword"
+                        [type]="hide ? 'password' : 'text'">
+                    <button mat-icon-button matSuffix type="button" (click)="hide = !hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" style="margin-left: 5px;">
+                    <mat-label>New Password</mat-label>
+                    <input matInput 
+                        placeholder="password"
+                        formControlName="password"
+                        [required]="changePassword"
+                        [(ngModel)]="pass.password"
+                        [type]="hide ? 'password' : 'text'">
+                    <button mat-icon-button matSuffix type="button" (click)="hide = !hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" style="margin-left: 5px;">
+                    <mat-label>Confirm New Password</mat-label>
+                    <input matInput 
+                        placeholder="confirm password"
+                        formControlName="confirm_password"
+                        [required]="changePassword"
+                        [(ngModel)]="pass.confirm_password"
+                        [type]="hide ? 'password' : 'text'">
+                    <button mat-icon-button matSuffix type="button" (click)="hide = !hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <button type="submit" color="accent" mat-raised-button>
+            UPDATE INFORMATIONS
+        </button>
+    </form>
+
+</section>

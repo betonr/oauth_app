@@ -31,7 +31,7 @@ export class CreateUserComponent implements OnInit {
           this.authorized = false;
         }
       });
-      this.formCreateUser= this.fb.group({
+      this.formCreateUser = this.fb.group({
         name: ['', [Validators.required]],
         email: ['', [Validators.required]],
         institution: ['', [Validators.required]],
