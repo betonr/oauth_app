@@ -25,20 +25,6 @@ export class LoginApplicationComponent implements OnInit {
   public url: string;
   public scope: string;
 
-  ngOnInit(): void {
-    this.url = this.route.snapshot.queryParams['url'];
-    this.scope = this.route.snapshot.queryParams['scope'];
-    this.application = this.route.snapshot.paramMap['params'].app_name;
-
-    if (!this.application) {
-      this.router.navigate(['/auth/login']);
-    } else {
-      if (this.token) {
-        this.loginWithToken();
-      }
-    }
-  }
-
   constructor(
     private as: AuthService,
     private store: Store<AppState>,
@@ -57,12 +43,26 @@ export class LoginApplicationComponent implements OnInit {
       });
   }
 
+  ngOnInit(): void {
+    this.url = this.route.snapshot.queryParams['url'];
+    this.scope = this.route.snapshot.queryParams['scope'];
+    this.application = this.route.snapshot.paramMap['params'].app_name;
+
+    if (!this.application) {
+      this.router.navigate(['/auth/login']);
+    } else {
+      if (this.token) {
+        this.loginWithToken();
+      }
+    }
+  }
+
   private async loginWithToken() {
     if (this.token) {
       try {
         this.store.dispatch(showLoading());
         const response = await this.as.token(this.token, this.application, this.scope || null);
-        this.redirect(response['callback'], this.token, response['token']);
+        this.redirect(response['callback'], this.token, response['token'], response['userId']);
 
       } catch (err) {
         this.store.dispatch(Logout());
@@ -92,13 +92,13 @@ export class LoginApplicationComponent implements OnInit {
         const responseToken = await this.as.token(response.access_token, this.application, this.scope || null);
 
         this.store.dispatch(Login({
-          userId  : response.user_id,
-          grants : response.grants,
-          token : response.access_token
+          userId: response.user_id,
+          grants: response.grants,
+          token: response.access_token
         }));
         this.error = {};
 
-        this.redirect(responseToken['callback'], response.access_token, responseToken['token']);
+        this.redirect(responseToken['callback'], response.access_token, responseToken['token'], response.userId);
 
       } catch (err) {
         const message = err.error.message ? err.error.message : 'Authentication Error!';
@@ -113,10 +113,10 @@ export class LoginApplicationComponent implements OnInit {
     }
   }
 
-  private redirect(baseUrl: string, accessToken: string, token: string) {
-    let url = `${baseUrl}?access_token=${accessToken}&token=${token}`;
+  private redirect(baseUrl: string, accessToken: string, token: string, userId: string) {
+    let url = `${baseUrl}?access_token=${accessToken}&token=${token}&user_id=${userId}`;
     if (this.scope) url += `&scope=${this.scope}`;
-    if (this.url) url += `&url=${this.url}`;    
+    if (this.url) url += `&callback=${this.url}`;    
     window.location.href = url;
   }
 
