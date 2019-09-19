@@ -12,7 +12,6 @@ import { Router } from '@angular/router';
  * login page component
  */
 @Component({
-  selector: 'app-dialog-feature',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })

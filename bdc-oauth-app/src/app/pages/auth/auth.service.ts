@@ -21,4 +21,20 @@ export class AuthService {
         const response = await this.http.post(`${this.urlOauth}${urlSuffix}`, credentials).toPromise();
         return response;
     }
+
+    /**
+     * get Token in OBT Oauth
+     */
+    public async token(authenticationToken: string, service: string, scope: string): Promise<any> {
+        let urlSuffix = `/auth/token?service=${service}`;
+        if (scope) {
+            urlSuffix += `&scope=${scope}`;
+        }
+        const response = await this.http.get(`${this.urlOauth}${urlSuffix}`, {
+            headers: {
+                Authorization: `Bearer ${authenticationToken}`
+            }
+        }).toPromise();
+        return response;
+    }
 }
