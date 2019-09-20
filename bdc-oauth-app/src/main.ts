@@ -14,7 +14,7 @@ initApm({
   serviceName: 'oauth_app',
   logLevel: 'error',
   active: false,
-  serverUrl: 'http://127.0.0.1:8200',
+  serverUrl: window['__env'].urlAPMServer,
 })
 
 platformBrowserDynamic().bootstrapModule(AppModule)
