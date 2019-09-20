@@ -1,4 +1,4 @@
-# Web App - Deploy
+# Oauth App - Deploy
 
 ## Installation
 ### Requirements
