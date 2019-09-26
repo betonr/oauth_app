@@ -21,6 +21,7 @@ export class LoginComponent {
   public password: string;
   public formLogin: FormGroup;
   public error: object;
+  public view = 'login';
 
   constructor(
     private as: AuthService,
@@ -80,6 +81,11 @@ export class LoginComponent {
         this.store.dispatch(closeLoading());
       }
     }
+  }
+
+  public changeView(type: string) {
+    this.view = type;
+    this.error = {}
   }
 
 }
