@@ -2,7 +2,7 @@
 
 ##### BUILD
 
-echos
+echo
 echo "BUILD STARTED"
 echo
 
