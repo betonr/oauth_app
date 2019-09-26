@@ -35,6 +35,7 @@ func main() {
 	}
 
 	new_content := strings.ReplaceAll(string(data), "URL_OAUTH", "'"+os.Getenv("URL_OAUTH")+"'")
+	new_content = strings.ReplaceAll(new_content, "URL_APM_SERVER", "'"+os.Getenv("URL_APM_SERVER")+"'")
 	err = ioutil.WriteFile(file_url+"assets/env.js", []byte(new_content), 0644)
 	if err != nil {
 		log.Fatalln(err)
