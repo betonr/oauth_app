@@ -2,16 +2,16 @@
 
 ##### BUILD
 
-echo
+echos
 echo "BUILD STARTED"
 echo
 
-cd bdc-aouth-app
-docker build -t image-to-build-bdc-aouth-app . --no-cache
+cd bdc-oauth-app
+docker build -t image-to-build-bdc-oauth-app . --no-cache
 
-docker run --name bdc-aouth-app-node-build -v $PWD/../deploy/dist:/deploy/dist image-to-build-bdc-aouth-app
-docker rm bdc-aouth-app-node-build
-docker rmi image-to-build-bdc-aouth-app
+docker run --name bdc-oauth-app-node-build -v $PWD/../deploy/dist:/deploy/dist image-to-build-bdc-oauth-app
+docker rm bdc-oauth-app-node-build
+docker rmi image-to-build-bdc-oauth-app
 
 cd ../deploy
 echo
