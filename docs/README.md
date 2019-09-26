@@ -1,4 +1,4 @@
-# Web Portal - Documentation
+# Oauth APP - Documentation
 Based on master-details model, this application has the following architecture.
 
 ## Generate Docs
