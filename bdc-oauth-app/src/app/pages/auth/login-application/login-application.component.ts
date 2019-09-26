@@ -24,6 +24,7 @@ export class LoginApplicationComponent implements OnInit {
   public application: string;
   public url: string;
   public scope: string;
+  public view = 'login';
 
   constructor(
     private as: AuthService,
@@ -118,6 +119,11 @@ export class LoginApplicationComponent implements OnInit {
     if (this.scope) url += `&scope=${this.scope}`;
     if (this.url) url += `&callback=${this.url}`;    
     window.location.href = url;
+  }
+
+  public changeView(type: string) {
+    this.view = type;
+    this.error = {}
   }
 
 }

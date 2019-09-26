@@ -1,43 +1,41 @@
-<section class="dialog-login">
-    <h1 class="title">
-        <mat-icon>lock</mat-icon>
-        OBT Oauth Server
-    </h1>
-
-    <form [formGroup]="formLogin" (ngSubmit)="login()">
-        <div class="content">
-            <p>Login</p>
-
-            <app-alert *ngIf="error"
-                [type]="error.type"
-                [message]="error.message">
-            </app-alert>
-
-            <mat-form-field appearance="fill" style="margin-top: 15px;">
-                <mat-label>Username</mat-label>
-                <input matInput
-                    type="username"
-                    name="username"
-                    placeholder="Username"
-                    [(ngModel)]="username"
-                    formControlName="username"
-                    required />
-            </mat-form-field>
-
-            <mat-form-field appearance="fill"  style="margin-top: -15px;">
-                <mat-label>Password</mat-label>
-                <input matInput
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    [(ngModel)]="password"
-                    formControlName="password"
-                    required />
-            </mat-form-field>
+<section class="page-login">
+    <div class="form">
+        <div class="thumbnail">
+            <img src="/assets/images/obt.png" alt="logo" />
         </div>
 
-        <div class="actions">
-            <button mat-raised-button type="submit" color="primary">Login</button>
+        <app-alert *ngIf="error" [type]="error.type" [message]="error.message">
+        </app-alert>
+
+        <form class="forgot-form" *ngIf="view == 'password'">
+            <label for="login-email">Digite seu e-mail</label>
+            <input type="text" id="login-email" />
+            
+            <button>Enviar</button>
+            <p class="message">Esqueceu sua senha? <a (click)="changeView('login')">Clique aqui</a></p>
+        </form>
+
+        <form class="login-form" 
+            [formGroup]="formLogin" 
+            (ngSubmit)="login()" 
+            *ngIf="view == 'login'">
+            
+            <label for="login-input-user">Username</label>
+            <input type="text" id="login-input-user" [(ngModel)]="username"
+                formControlName="username" name="username" required />
+
+            <label for="login-input-password">Password</label>
+            <input type="password" id="login-input-password" name="password" 
+                [(ngModel)]="password" formControlName="password" required />
+
+            <button type="submit">Entrar</button>
+            <p class="message">Esqueceu sua senha? <a (click)="changeView('password')">Clique aqui</a></p>
+        </form>
+    </div>
+
+    <div class="container">
+        <div class="info">
+            <span><a href="http://www.obt.inpe.br/OBT" target="_blank"> &copy; OBT - Coordenação-Geral de Observação da Terra</a></span> 
         </div>
-    </form>
+    </div>
 </section>
