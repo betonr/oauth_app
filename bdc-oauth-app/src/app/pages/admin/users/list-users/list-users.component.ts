@@ -28,7 +28,7 @@ export class ListUsersComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.displayedColumns = ['name', 'email', 'institution', 'occupation', 'date'];
+    this.displayedColumns = ['name', 'email', 'institution', 'occupation', 'admin', 'date'];
     this.getUsers();
   }
 
