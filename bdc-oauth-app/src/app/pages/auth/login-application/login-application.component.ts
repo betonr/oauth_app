@@ -63,7 +63,7 @@ export class LoginApplicationComponent implements OnInit {
       try {
         this.store.dispatch(showLoading());
         const response = await this.as.token(this.token, this.application, this.scope || null);
-        this.redirect(response['callback'], this.token, response['token'], response['userId']);
+        this.redirect(response['callback'], this.token, response['token'], response['user_id']);
 
       } catch (err) {
         this.store.dispatch(Logout());
@@ -99,7 +99,7 @@ export class LoginApplicationComponent implements OnInit {
         }));
         this.error = {};
 
-        this.redirect(responseToken['callback'], response.access_token, responseToken['token'], response.userId);
+        this.redirect(responseToken['callback'], response.access_token, responseToken['token'], response.user_id);
 
       } catch (err) {
         const message = err.error.message ? err.error.message : 'Authentication Error!';

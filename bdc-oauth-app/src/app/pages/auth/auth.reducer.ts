@@ -18,6 +18,7 @@ const initialState: AuthState = {
 export const reducer = createReducer(initialState,
   on(Login, (state, payload) => {
     localStorage.setItem('user', JSON.stringify(payload));
+    document.cookie = "oauth.obt.inpe.br="+payload['token'].toString()+"; Domain=.inpe.br; expires="+(new Date()).toDateString()+"; path=/";
     return { 
       ...state,
       userId: payload['userId'].toString(),
@@ -27,6 +28,7 @@ export const reducer = createReducer(initialState,
   }),
   on(Logout, (state) => {
     localStorage.removeItem('user');
+    document.cookie = "oauth.obt.inpe.br=''; Domain=.inpe.br; expires="+(new Date()).toDateString()+"; path=/";
     return { ...state, userId: '', token: '', grants: '' };
   })
 );

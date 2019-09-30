@@ -6,8 +6,8 @@ import { AdminComponent } from './pages/admin/admin.component';
 const routes: Routes = [
   { path: 'auth', loadChildren: './pages/auth/auth.module#AuthModule'},
   { path: 'admin', component: AdminComponent, loadChildren: './pages/admin/admin.module#AdminModule'},
-  { path: '', redirectTo: '/auth', pathMatch: 'full' },
-  { path: '**', redirectTo: '/auth', pathMatch: 'full' }
+  { path: '', redirectTo: '/auth/login', pathMatch: 'full' },
+  { path: '**', redirectTo: '/auth/login', pathMatch: 'full' }
 ];
 
 /**
