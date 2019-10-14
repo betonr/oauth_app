@@ -71,7 +71,7 @@ export class CreateUserComponent implements OnInit {
               verticalPosition: 'top',
               panelClass: 'app_snack-bar-success'
             });
-            this.router.navigate(['/admin/users']);
+            this.router.navigate(['/admin/my']);
           } else throw 'Error creating User!';
         }
       }

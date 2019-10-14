@@ -46,6 +46,11 @@
                 <td mat-cell *matCellDef="let element"> {{ element.occupation }} </td>
             </ng-container>
 
+            <ng-container matColumnDef="admin">
+                <th mat-header-cell *matHeaderCellDef> ADMIN </th>
+                <td mat-cell *matCellDef="let element"> {{ element.credential.grants.indexOf('admin') >= 0 ? 'Yes' : 'No' }} </td>
+            </ng-container>
+
             <ng-container matColumnDef="date">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear> DATE </th>
                 <td mat-cell *matCellDef="let element"> {{ getDateFormated(element.created_at) }} </td>

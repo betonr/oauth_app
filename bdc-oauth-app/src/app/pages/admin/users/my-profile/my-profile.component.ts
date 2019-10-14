@@ -32,7 +32,7 @@ export class MyProfileComponent implements OnInit {
             this.userId = res.userId;
         } else {
             this.userId = null;
-            this.router.navigate(['/admin/users']);
+            this.router.navigate(['/admin/my']);
         }
       });
       this.formEditUser = this.fb.group({

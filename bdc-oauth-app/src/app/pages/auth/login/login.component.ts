@@ -31,7 +31,7 @@ export class LoginComponent {
     private fb: FormBuilder) {
       this.store.pipe(select('auth')).subscribe(res => {
         if (res.userId && res.token && res.grants) {
-          this.router.navigate(['/admin/users']);
+          this.router.navigate(['/admin/my']);
         }
       });
 
@@ -62,7 +62,7 @@ export class LoginComponent {
           token : response.access_token
         }));
         this.error = {};
-        this.router.navigate(['/admin/users']);
+        this.router.navigate(['/admin/my']);
         
         this.snackBar.open('Login Successfully!', '', {
           duration: 2000,
