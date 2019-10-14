@@ -11,13 +11,15 @@
         width: 299px;
 
         header {
-            .title {
-                font-family: var(--mainFont);
-                font-size: 1.5em;
-                color: var(--mainColor);
+            .logo {
                 padding: 15px 0;
-                text-align: center;
-                font-weight: 700;
+                display: flex;
+                width: 100%;
+                justify-content: center;
+
+                img {
+                    width: 200px;
+                }
             }
         }
     }

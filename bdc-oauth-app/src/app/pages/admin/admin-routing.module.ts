@@ -6,7 +6,7 @@ import { MyProfileComponent } from './users/my-profile/my-profile.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/admin/users', pathMatch: 'full' },
+  { path: '', redirectTo: '/admin/my', pathMatch: 'full' },
   { path: 'users', component: ListUsersComponent },
   { path: 'users/create', component: CreateUserComponent },
   { path: 'my', component: MyProfileComponent }
