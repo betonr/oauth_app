@@ -26,6 +26,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { ListUsersComponent } from './users/list-users/list-users.component';
 import { CreateUserComponent } from './users/create-user/create-user.component';
 import { MyProfileComponent } from './users/my-profile/my-profile.component';
+import { ListAppsComponent } from './applications/list-apps/list-apps.component';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { MyProfileComponent } from './users/my-profile/my-profile.component';
     AdminComponent,
     ListUsersComponent,
     CreateUserComponent,
+    ListAppsComponent,
     MyProfileComponent,
     SidenavComponent,
     ToolbarComponent

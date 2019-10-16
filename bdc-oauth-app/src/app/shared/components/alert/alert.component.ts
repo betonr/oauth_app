@@ -19,7 +19,7 @@ export class AlertComponent {
       case 'error':
         return 'error_outline';
       case 'warning':
-        return 'alert';
+        return 'warning';
     }
   }
 

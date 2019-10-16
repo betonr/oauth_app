@@ -33,13 +33,13 @@ export class SidenavComponent {
         group: 'users',
         enabled: grants.indexOf('admin') >= 0
       },
-      // {
-      //   path: '/admin/apps',
-      //   icon: 'apps',
-      //   title: 'Applications',
-      //   group: 'apps',
-      //   enabled: true
-      // },
+      {
+        path: '/admin/apps',
+        icon: 'apps',
+        title: 'Applications',
+        group: 'apps',
+        enabled: true
+      },
       // {
       //   path: '/admin/permissions',
       //   icon: 'perm_data_setting',
