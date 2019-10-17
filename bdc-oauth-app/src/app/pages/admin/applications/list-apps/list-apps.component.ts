@@ -14,6 +14,7 @@ export class ListAppsComponent implements OnInit {
   public displayedColumns: string[];
   public dataSource = [];
   public authorized = null;
+  public notApps = false;
   private userId = null;
 
   constructor(
@@ -30,7 +31,7 @@ export class ListAppsComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.displayedColumns = ['client_name', 'client_uri', 'redirect_uri', 'created_at', 'expired_at'];
+    this.displayedColumns = ['client_name', 'client_uri', 'redirect_uri', 'created_at', 'expired_at', 'actions'];
     this.getClients();
   }
 
@@ -39,6 +40,7 @@ export class ListAppsComponent implements OnInit {
       const response = await this.as.getApplications(this.userId);
       this.dataSource = response.clients;
     } catch(err) {
+      this.notApps = true;
       if (err.status && err.status == 403) {
         this.authorized = false;
       }
@@ -47,5 +49,9 @@ export class ListAppsComponent implements OnInit {
 
   public getDateFormated(date) {
     return new Date(date).toLocaleDateString();
+  }
+
+  public getUrlEdit(element) {
+    return `/admin/apps/${element.id}`;
   }
 }
