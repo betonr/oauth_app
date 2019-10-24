@@ -39,6 +39,10 @@ export class ListAppsComponent implements OnInit {
     try {
       const response = await this.as.getApplications(this.userId);
       this.dataSource = response.clients;
+      if (response.clients.length === 0) {
+        this.notApps = true;
+      }
+
     } catch(err) {
       this.notApps = true;
       if (err.status && err.status == 403) {
@@ -52,6 +56,6 @@ export class ListAppsComponent implements OnInit {
   }
 
   public getUrlEdit(element) {
-    return `/admin/apps/${element.id}`;
+    return `/admin/apps/${element._id}`;
   }
 }

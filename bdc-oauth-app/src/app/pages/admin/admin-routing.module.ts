@@ -4,12 +4,14 @@ import { ListUsersComponent } from './users/list-users/list-users.component';
 import { CreateUserComponent } from './users/create-user/create-user.component';
 import { MyProfileComponent } from './users/my-profile/my-profile.component';
 import { ListAppsComponent } from './applications/list-apps/list-apps.component';
+import { EditAppsComponent } from './applications/edit-apps/edit-apps.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: '/admin/my', pathMatch: 'full' },
   { path: 'users', component: ListUsersComponent },
   { path: 'apps', component: ListAppsComponent },
+  { path: 'apps/:id', component: EditAppsComponent },
   { path: 'users/create', component: CreateUserComponent },
   { path: 'my', component: MyProfileComponent }
 ];
