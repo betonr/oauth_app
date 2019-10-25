@@ -1,0 +1,10 @@
+<div class="dialog-confirm">
+  <h1>Confirm</h1>
+  <div>
+    {{ confirmMessage }}
+  </div>
+  <div class="box-button">
+    <button color="primary" mat-raised-button (click)="dialogRef.close(true)">CONFIRM</button>
+    <button mat-raised-button (click)="dialogRef.close(false)">Cancel</button>
+  </div>
+</div>

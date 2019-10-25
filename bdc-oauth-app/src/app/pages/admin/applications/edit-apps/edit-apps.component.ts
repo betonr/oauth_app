@@ -6,7 +6,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UsersService } from '../../users/users.service';
 import { showLoading, closeLoading } from 'src/app/app.action';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialog } from '@angular/material';
+import { ConfirmDialog } from 'src/app/shared/components/confirm-dialog/confirm-dialog.component';
 
 @Component({
   templateUrl: './edit-apps.component.html',
@@ -21,6 +22,7 @@ export class EditAppsComponent implements OnInit {
   public authors: object[];
   public authorsAvailable: object[];
   public hide = true;
+  public author = '';
   private userId = null
 
   constructor(
@@ -30,6 +32,7 @@ export class EditAppsComponent implements OnInit {
     private router: Router,
     private store: Store<AuthState>,
     private snackBar: MatSnackBar,
+    public dialog: MatDialog,
     private fb: FormBuilder) {
     this.formEditApp = this.fb.group({
       client_name: ['', [Validators.required]],
@@ -125,6 +128,40 @@ export class EditAppsComponent implements OnInit {
     }
   }
 
+  public async addAuthor() {
+    try {
+      this.store.dispatch(showLoading());
+
+      if (!this.author) {
+        throw 'Select one author!';
+
+      } else {
+        const response = await this.as.addAuthorById(this.client['_id'], this.author);
+        if (response) {
+          this.snackBar.open('Author added!', '', {
+            duration: 4000,
+            verticalPosition: 'top',
+            panelClass: 'app_snack-bar-success'
+          });
+          this.getClient(this.client['_id']);
+  
+        } else throw 'Add error';
+      }
+
+    } catch(err) {
+      const msg = err.error && err.error.message ? err.error.message : err.toString();
+      this.snackBar.open(msg, '', {
+        duration: 4000,
+        verticalPosition: 'top',
+        panelClass: 'app_snack-bar-error'
+      });
+      
+    } finally {
+      this.author = '';
+      this.store.dispatch(closeLoading());
+    }
+  }
+
   public async removeAuthor(id) {
     try {
       this.store.dispatch(showLoading());
@@ -156,5 +193,22 @@ export class EditAppsComponent implements OnInit {
     } finally {
       this.store.dispatch(closeLoading());
     }
+  }
+
+  public openConfirmationDialog(msg, name, type, id) {
+    this.dialog.open(ConfirmDialog, {
+      disableClose: false,
+      data: {
+        confirmMessage: `${msg} ${name}`
+      }
+    }).afterClosed().subscribe(result => {
+      if (result) {
+        if (type === 'remove') {
+          this.removeAuthor(id);
+        } else if (type === 'add') {
+          this.addAuthor();
+        }
+      }
+    });
   }
 }

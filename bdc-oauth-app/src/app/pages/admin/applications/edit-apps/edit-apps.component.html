@@ -41,7 +41,10 @@
             <div class="inline-block">
                 <mat-form-field appearance="fill">
                     <mat-label>Type Secret</mat-label>
-                    <mat-select [(value)]="client.type_secret" formControlName="type_secret" required>
+                    <mat-select 
+                        [(ngModel)]="client.type_secret" 
+                        formControlName="type_secret" 
+                        required>
                         <mat-option *ngFor="let type of ['string', 'file']" [value]="type">
                             {{ type }}
                         </mat-option>
@@ -89,7 +92,10 @@
             <div class="list" *ngFor="let author of authors">
                 <p>{{ author.name }}</p>
 
-                <button mat-icon-button (click)="removeAuthor(author._id)">
+                <button 
+                    mat-icon-button 
+                    *ngIf="authors.length > 1"
+                    (click)="openConfirmationDialog('Do you really want to remove the author:', author.name, 'remove', author._id)">
                     <mat-icon>delete</mat-icon>
                 </button>
             </div>
@@ -104,7 +110,9 @@
                     </mat-select>
                 </mat-form-field>
 
-                <button mat-mini-fab color="primary">
+                <button 
+                    mat-mini-fab color="primary"
+                    (click)="openConfirmationDialog('Do you really want to add the author?', null, 'add', null)">
                     <mat-icon>check</mat-icon>
                 </button>
             </div>
