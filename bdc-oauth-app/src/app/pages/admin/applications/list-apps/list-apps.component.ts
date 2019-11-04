@@ -58,4 +58,8 @@ export class ListAppsComponent implements OnInit {
   public getUrlEdit(element) {
     return `/admin/apps/${element._id}`;
   }
+
+  public getUrlPermissions(element) {
+    return `/admin/apps/${element._id}/permissions`;
+  }
 }

@@ -29,6 +29,7 @@ import { MyProfileComponent } from './users/my-profile/my-profile.component';
 import { ListAppsComponent } from './applications/list-apps/list-apps.component';
 import { EditAppsComponent } from './applications/edit-apps/edit-apps.component';
 import { CreateAppsComponent } from './applications/create-apps/create-apps.component';
+import { PermissionsAppsComponent } from './applications/permissions-apps/permissions-apps.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { CreateAppsComponent } from './applications/create-apps/create-apps.comp
     ListAppsComponent,
     EditAppsComponent,
     CreateAppsComponent,
+    PermissionsAppsComponent,
     MyProfileComponent,
     SidenavComponent,
     ToolbarComponent
