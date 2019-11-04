@@ -28,6 +28,7 @@ import { CreateUserComponent } from './users/create-user/create-user.component';
 import { MyProfileComponent } from './users/my-profile/my-profile.component';
 import { ListAppsComponent } from './applications/list-apps/list-apps.component';
 import { EditAppsComponent } from './applications/edit-apps/edit-apps.component';
+import { CreateAppsComponent } from './applications/create-apps/create-apps.component';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { EditAppsComponent } from './applications/edit-apps/edit-apps.component'
     CreateUserComponent,
     ListAppsComponent,
     EditAppsComponent,
+    CreateAppsComponent,
     MyProfileComponent,
     SidenavComponent,
     ToolbarComponent

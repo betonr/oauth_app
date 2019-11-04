@@ -56,6 +56,20 @@ export class ApplicationsService {
     }
 
     /**
+     * create Application/Client
+     */
+    public async createApplication(data): Promise<any> {
+        const urlSuffix = `/clients/`;
+        const authenticationToken = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user'))['token'] : '';
+        const response = await this.http.post(`${this.urlOauth}${urlSuffix}`, data, {
+            headers: {
+                Authorization: `Bearer ${authenticationToken}`
+            }
+        }).toPromise();
+        return response;
+    }
+
+    /**
      * remove Author
      */
     public async removeAuthorById(clientId, authorId): Promise<any> {

@@ -23,7 +23,7 @@ export class EditAppsComponent implements OnInit {
   public authorsAvailable: object[];
   public hide = true;
   public author = '';
-  private userId = null
+  private userId = null;
 
   constructor(
     private as: ApplicationsService,
