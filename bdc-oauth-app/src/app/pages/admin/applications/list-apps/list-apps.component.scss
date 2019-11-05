@@ -1,11 +1,16 @@
 @import 'src/assets/styles/admin-page-base.scss';
 
-.users-list {
+.apps-list {
     display: flex;
     width: 100%;
     margin-top: 25px;
 
-    .users_list-table {
+    .box-alert {
+        width: 100%;
+        padding: 20px 0;
+    }
+    
+    .apps_list-table {
         width: 100%;
 
         .list_btn-plus_details {
@@ -16,6 +21,7 @@
 
             button {
                 margin: 0 5px;
+                cursor: pointer;
             }
         }
     }

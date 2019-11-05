@@ -1,0 +1,17 @@
+.dialog-confirm {
+    margin: 0;
+
+    h1 {
+        margin-top: 0;
+    }
+    
+    .box-button {
+        margin-top: 15px;
+        display: flex;
+        justify-content: flex-end;
+
+        button {
+            margin-left: 10px;
+        }
+    }
+}

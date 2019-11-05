@@ -15,6 +15,7 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { FormFieldErrorComponent } from './components/form-field-input/form-field-error.component';
 import { AlertComponent } from './components/alert/alert.component';
+import { ConfirmDialog } from './components/confirm-dialog/confirm-dialog.component';
 
 /**
  * Shared Module
@@ -25,13 +26,15 @@ import { AlertComponent } from './components/alert/alert.component';
     FooterComponent,
     LoadingComponent,
     FormFieldErrorComponent,
-    AlertComponent
+    AlertComponent,
+    ConfirmDialog
   ],
   exports: [
     FooterComponent,
     AlertComponent,
     FormFieldErrorComponent,
-    LoadingComponent
+    LoadingComponent,
+    ConfirmDialog
   ],
   imports: [
     CommonModule,
@@ -43,6 +46,9 @@ import { AlertComponent } from './components/alert/alert.component';
     MatInputModule,
     MatCheckboxModule,
     NgxSpinnerModule
+  ],
+  entryComponents: [
+    ConfirmDialog
   ]
 })
 export class SharedModule { }

@@ -1,0 +1,83 @@
+<section class="conatiner_page-not_authorized" *ngIf="authorized === false">
+    You are not allowed to access this resource!
+</section>
+
+<section class="container-page__admin" *ngIf="authorized === true">
+    <!-- TITLE -->
+    <div class="admin-title">
+        <div class="title">
+            <span class="title-group">apps /</span>
+            <span class="title-sub-group">Create</span>
+        </div>
+    </div>
+
+    <form [formGroup]="formCreateApp"
+        (ngSubmit)="create()"
+        class="create-app">
+
+        <!-- BOX FORM ADITIONAL INFOS -->
+        <div class="admin-client_form_infos">
+            <div class="inline-block">
+                <mat-form-field appearance="fill">
+                    <mat-label>Name</mat-label>
+                    <input matInput
+                        name="client_name"
+                        formControlName="client_name"
+                        [(ngModel)]="client.client_name"
+                        required>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" style="margin-left: 5px;">
+                    <mat-label>URI</mat-label>
+                    <input matInput
+                        name="client_uri"
+                        formControlName="client_uri"
+                        [(ngModel)]="client.client_uri"
+                        required>
+                </mat-form-field>
+            </div>
+
+            <div class="inline-block">
+                <mat-form-field appearance="fill">
+                    <mat-label>Type Secret</mat-label>
+                    <mat-select 
+                        [(ngModel)]="client.type_secret" 
+                        formControlName="type_secret" 
+                        required>
+                        <mat-option *ngFor="let type of ['string', 'file']" [value]="type">
+                            {{ type }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" style="margin-left: 5px;">
+                    <mat-label>Secret</mat-label>
+                    <input matInput
+                        formControlName="client_secret"
+                        [(ngModel)]="client.client_secret"
+                        [type]="hide ? 'password' : 'text'"
+                        required>
+                    <button mat-icon-button matSuffix type="button" (click)="hide = !hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+            </div>
+
+            <div class="inline-block">
+                <mat-form-field appearance="fill">
+                    <mat-label>Redirect URI</mat-label>
+                    <input matInput
+                        name="redirect_uri"
+                        formControlName="redirect_uri"
+                        [(ngModel)]="client.redirect_uri"
+                        required>
+                </mat-form-field>
+            </div>
+
+            <button type="submit" mat-raised-button>
+                CREATE APPLICATION
+            </button>
+        </div>
+    </form>
+        
+</section>
