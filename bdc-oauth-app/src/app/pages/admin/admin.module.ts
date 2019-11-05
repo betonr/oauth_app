@@ -30,6 +30,8 @@ import { ListAppsComponent } from './applications/list-apps/list-apps.component'
 import { EditAppsComponent } from './applications/edit-apps/edit-apps.component';
 import { CreateAppsComponent } from './applications/create-apps/create-apps.component';
 import { PermissionsAppsComponent } from './applications/permissions-apps/permissions-apps.component';
+import { CdkTableModule } from '@angular/cdk/table';
+import { AddPermissionsComponent } from './applications/permissions-apps/add-permissions/add-permissions.component';
 
 
 @NgModule({
@@ -41,6 +43,7 @@ import { PermissionsAppsComponent } from './applications/permissions-apps/permis
     EditAppsComponent,
     CreateAppsComponent,
     PermissionsAppsComponent,
+    AddPermissionsComponent,
     MyProfileComponent,
     SidenavComponent,
     ToolbarComponent
@@ -58,6 +61,7 @@ import { PermissionsAppsComponent } from './applications/permissions-apps/permis
     MatRadioModule,
     MatBottomSheetModule,
     MatInputModule,
+    CdkTableModule,
     MatTableModule,
     MatNativeDateModule,
     MatDatepickerModule,
@@ -66,6 +70,9 @@ import { PermissionsAppsComponent } from './applications/permissions-apps/permis
     ReactiveFormsModule,
     MatSidenavModule,
     MatMenuModule
+  ],
+  entryComponents: [
+    AddPermissionsComponent
   ]
 })
 export class AdminModule { }
