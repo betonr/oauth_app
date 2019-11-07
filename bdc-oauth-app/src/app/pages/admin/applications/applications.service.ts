@@ -96,4 +96,32 @@ export class ApplicationsService {
         }).toPromise();
         return response;
     }
+
+    /**
+     * add Scope
+     */
+    public async addScope(clientId, userId, scope): Promise<any> {
+        const urlSuffix = `/auth/authorize/${userId}/${clientId}`;
+        const authenticationToken = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user'))['token'] : '';
+        const response = await this.http.post(`${this.urlOauth}${urlSuffix}`, { scope: [scope] }, {
+            headers: {
+                Authorization: `Bearer ${authenticationToken}`
+            }
+        }).toPromise();
+        return response;
+    }
+
+    /**
+     * remove Scope
+     */
+    public async deleteScope(clientId, userId, scope): Promise<any> {
+        const urlSuffix = `/auth/revoke/${userId}/${clientId}`;
+        const authenticationToken = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user'))['token'] : '';
+        const response = await this.http.post(`${this.urlOauth}${urlSuffix}`, { scope: [scope] }, {
+            headers: {
+                Authorization: `Bearer ${authenticationToken}`
+            }
+        }).toPromise();
+        return response;
+    }
 }

@@ -1,0 +1,29 @@
+<div class="box-add_permissions">
+    <mat-form-field appearance="outline">
+        <mat-label>select user</mat-label>
+        <mat-select [(value)]="userSelected">
+            <mat-option *ngFor="let user of usersAvailable" [value]="user._id">
+                {{ user.name }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>scope</mat-label>
+        <input matInput
+            [(ngModel)]="scope">
+    </mat-form-field>
+
+    <button mat-raised-button 
+        (click)="close()"
+        style="margin-right: 10px;">
+        Cancelar
+    </button>    
+    <button 
+        color="primary"
+        mat-raised-button 
+        [disabled]="!userSelected || !scope"
+        (click)="addScope()">
+        ADICIONAR
+    </button>
+</div>

@@ -70,10 +70,24 @@ export class UsersService {
     }
 
     /**
-     * edit User
+     * get User by ID
      */
     public async getUserById(userId: string): Promise<any> {
         const urlSuffix = `/users/${userId}`;
+        const authenticationToken = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user'))['token'] : '';
+        const response = await this.http.get(`${this.urlOauth}${urlSuffix}`, {
+            headers: {
+                Authorization: `Bearer ${authenticationToken}`
+            }
+        }).toPromise();
+        return response;
+    }
+
+    /**
+     * get users by Client ID
+     */
+    public async getUsersByApplication(clientId: string): Promise<any> {
+        const urlSuffix = `/users/client/${clientId}`;
         const authenticationToken = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user'))['token'] : '';
         const response = await this.http.get(`${this.urlOauth}${urlSuffix}`, {
             headers: {

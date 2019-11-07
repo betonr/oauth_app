@@ -29,6 +29,9 @@ import { MyProfileComponent } from './users/my-profile/my-profile.component';
 import { ListAppsComponent } from './applications/list-apps/list-apps.component';
 import { EditAppsComponent } from './applications/edit-apps/edit-apps.component';
 import { CreateAppsComponent } from './applications/create-apps/create-apps.component';
+import { PermissionsAppsComponent } from './applications/permissions-apps/permissions-apps.component';
+import { CdkTableModule } from '@angular/cdk/table';
+import { AddPermissionsComponent } from './applications/permissions-apps/add-permissions/add-permissions.component';
 
 
 @NgModule({
@@ -39,6 +42,8 @@ import { CreateAppsComponent } from './applications/create-apps/create-apps.comp
     ListAppsComponent,
     EditAppsComponent,
     CreateAppsComponent,
+    PermissionsAppsComponent,
+    AddPermissionsComponent,
     MyProfileComponent,
     SidenavComponent,
     ToolbarComponent
@@ -56,6 +61,7 @@ import { CreateAppsComponent } from './applications/create-apps/create-apps.comp
     MatRadioModule,
     MatBottomSheetModule,
     MatInputModule,
+    CdkTableModule,
     MatTableModule,
     MatNativeDateModule,
     MatDatepickerModule,
@@ -64,6 +70,9 @@ import { CreateAppsComponent } from './applications/create-apps/create-apps.comp
     ReactiveFormsModule,
     MatSidenavModule,
     MatMenuModule
+  ],
+  entryComponents: [
+    AddPermissionsComponent
   ]
 })
 export class AdminModule { }

@@ -1,0 +1,83 @@
+@import 'src/assets/styles/admin-page-base.scss';
+
+.app-users_list {
+    display: flex;
+    width: 100%;
+    margin-top: 25px;
+
+    .box-alert {
+        width: 100%;
+        padding: 20px 0;
+    }
+    
+    .app-users_list-table {
+        width: 100%;
+    }
+
+    table {
+        width: 100%;
+    }
+    
+    tr.detail-row {
+        height: 0;
+    }
+    
+    tr.element-row:not(.expanded-row):hover {
+        background: #777;
+    }
+    tr.element-row:not(.expanded-row):active {
+        background: #efefef;
+    }
+    
+    .element-row td {
+        border-bottom-width: 0;
+    }
+    
+    .element-detail {
+        overflow: hidden;
+        display: flex;
+    }
+    
+    .element-description {
+        border-top: 1px dashed #CCC;
+        background: rgba(#000, 0.04);
+        margin-bottom: 10px;
+        border-radius: 0 0 5px 5px;
+        padding: 15px 0;
+        width: 100%;
+
+        .scopes {
+            margin: 0;
+            display: flex;
+            justify-content: flex-start;
+            flex-flow: wrap;
+            list-style: none;
+
+            .scope {
+                width: 300px;
+                padding: 10px;
+                margin-right: 10px; 
+                border-radius: 10px;
+                border: 1px solid #CCC;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+        }
+
+        .input-box {
+            display: flex;
+            align-items: center;
+            padding: 15px 30px 0 30px;
+
+            margin-bottom: -25px;
+
+            button {
+                width: 130px;
+                margin-left: 10px;
+                margin-top: -25px;
+            }
+        }
+    }
+}
+
