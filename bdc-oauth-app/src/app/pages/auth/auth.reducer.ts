@@ -18,7 +18,7 @@ const initialState: AuthState = {
 export const reducer = createReducer(initialState,
   on(Login, (state, payload) => {
     localStorage.setItem('user', JSON.stringify(payload));
-    document.cookie = "oauth.obt.inpe.br="+payload['token'].toString()+"; Domain=.inpe.br; expires="+(new Date()).toDateString()+"; path=/";
+    document.cookie = "oauth.obt.inpe.br="+payload['token'].toString()+"; Domain=.inpe.br; path=/";
     return { 
       ...state,
       userId: payload['userId'].toString(),
