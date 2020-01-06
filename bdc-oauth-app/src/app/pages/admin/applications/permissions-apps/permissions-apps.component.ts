@@ -77,7 +77,7 @@ export class PermissionsAppsComponent implements OnInit {
     return scopes.substring(1, scopes.length-1).replace(/'/g, '').split(',')
   }
 
-  public async addScope() {
+  public async addScope(userId) {
     try {
       this.store.dispatch(showLoading());
       if (!this.newScope) {
@@ -88,7 +88,7 @@ export class PermissionsAppsComponent implements OnInit {
         });
 
       } else {
-        const response = await this.as.addScope(this.client_id, this.userId, this.newScope);
+        const response = await this.as.addScope(this.client_id, userId, this.newScope);
         this.snackBar.open('Scope added', '', {
           duration: 4000,
           verticalPosition: 'top',
