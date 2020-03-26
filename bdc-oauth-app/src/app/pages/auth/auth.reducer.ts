@@ -1,4 +1,4 @@
-import { createReducer, on } from '@ngrx/store';
+import { createReducer, on, Action } from '@ngrx/store';
 import { AuthState } from './auth.state';
 import {
   Login, Logout
@@ -15,7 +15,7 @@ const initialState: AuthState = {
  * reducer to manage Auth state
  * set new values in AuthState
  */
-export const reducer = createReducer(initialState,
+const reducerAuth = createReducer(initialState,
   on(Login, (state, payload) => {
     localStorage.setItem('user', JSON.stringify(payload));
     const expiredSeconds = (new Date(payload['expired_date']).getTime() - new Date().getTime()) / 1000;
@@ -33,3 +33,7 @@ export const reducer = createReducer(initialState,
     return { ...state, userId: '', token: '', grants: '' };
   })
 );
+
+export function reducer(state: AuthState | undefined, action: Action) {
+  return reducerAuth(state, action);
+}

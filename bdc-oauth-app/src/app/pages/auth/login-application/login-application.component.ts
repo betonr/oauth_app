@@ -7,6 +7,7 @@ import { AppState } from 'src/app/app.state';
 import { Login, Logout } from '../auth.action';
 import { Router, ActivatedRoute } from '@angular/router';
 import { getCookie } from 'src/app/shared/helpers/Cookie';
+import { ErrorMsg } from 'src/app/shared/helpers/interfaces';
 
 /**
  * login page component
@@ -20,7 +21,7 @@ export class LoginApplicationComponent implements OnInit {
   public username: string;
   public password: string;
   public formLogin: FormGroup;
-  public error: object;
+  public error: ErrorMsg;
   public token: string;
   public application: string;
   public url: string;
@@ -99,7 +100,7 @@ export class LoginApplicationComponent implements OnInit {
           grants: response.grants,
           token: response.access_token
         }));
-        this.error = {};
+        this.error = null;
 
         this.redirect(responseToken['callback'], response.access_token, responseToken['token'], response.user_id);
 
@@ -125,7 +126,7 @@ export class LoginApplicationComponent implements OnInit {
 
   public changeView(type: string) {
     this.view = type;
-    this.error = {}
+    this.error = null;
   }
 
 }

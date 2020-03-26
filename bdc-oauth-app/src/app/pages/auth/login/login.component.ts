@@ -7,6 +7,7 @@ import { Store, select } from '@ngrx/store';
 import { AppState } from 'src/app/app.state';
 import { Login } from '../auth.action';
 import { Router } from '@angular/router';
+import { ErrorMsg } from 'src/app/shared/helpers/interfaces';
 
 /**
  * login page component
@@ -20,7 +21,7 @@ export class LoginComponent {
   public username: string;
   public password: string;
   public formLogin: FormGroup;
-  public error: object;
+  public error: ErrorMsg;
   public view = 'login';
 
   constructor(
@@ -62,7 +63,7 @@ export class LoginComponent {
           token: response.access_token,
           expired_date: response.expired_date
         }));
-        this.error = {};
+        this.error = null;
         this.router.navigate(['/admin/my']);
         
         this.snackBar.open('Login Successfully!', '', {
@@ -86,7 +87,7 @@ export class LoginComponent {
 
   public changeView(type: string) {
     this.view = type;
-    this.error = {}
+    this.error = null;
   }
 
 }

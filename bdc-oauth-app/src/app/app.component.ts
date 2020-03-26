@@ -28,11 +28,11 @@ export class AppComponent {
       } else {
         this.spinner.hide();
       }
-
-      if (!getCookie('oauth.dpi.inpe.br')) {
-        this.store.dispatch(Logout());
-        this.router.navigate(['/auth/login']);
-      }
     });
+
+    if (!getCookie('oauth.dpi.inpe.br')) {
+      this.store.dispatch(Logout());
+      this.router.navigate(['/auth/login']);
+    }
   }
 }

@@ -6,6 +6,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { closeLoading, showLoading } from 'src/app/app.action';
 import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
+import { UserPassword, UserAdditional } from '../user.interface';
 
 @Component({
   templateUrl: './my-profile.component.html',
@@ -14,8 +15,8 @@ import { Router } from '@angular/router';
 export class MyProfileComponent implements OnInit {
 
   public userInfo: object;
-  public aditionalInfos: object;
-  public pass: object;
+  public aditionalInfos: UserAdditional;
+  public pass: UserPassword;
   public formEditUser: FormGroup;
   public hide = true;
   public userId = null;
@@ -70,8 +71,8 @@ export class MyProfileComponent implements OnInit {
     try {
       const response = await this.us.getUserById(this.userId);
       this.userInfo = response;
-      this.aditionalInfos['institution'] = this.userInfo['institution']; 
-      this.aditionalInfos['occupation'] = this.userInfo['occupation']; 
+      this.aditionalInfos.institution = this.userInfo['institution']; 
+      this.aditionalInfos.occupation = this.userInfo['occupation']; 
 
     } catch(err) {}
   }
@@ -129,7 +130,7 @@ export class MyProfileComponent implements OnInit {
     }
   }
 
-  public getDateFormated(date) {
+  public getDateFormated(date: string) {
     return new Date(date).toLocaleDateString();
   }
 }

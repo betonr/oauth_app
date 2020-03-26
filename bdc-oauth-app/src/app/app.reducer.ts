@@ -1,4 +1,4 @@
-import { createReducer, on } from '@ngrx/store';
+import { createReducer, on, Action } from '@ngrx/store';
 import {
   showLoading,
   closeLoading
@@ -14,7 +14,7 @@ const initialState: AppState = {
  * reducer to manage App state
  * set new values in AppState
  */
-export const reducer = createReducer(initialState,
+const reducerApp = createReducer(initialState,
   on(showLoading, (state) => {
     return { ...state, loading: true };
   }),
@@ -22,3 +22,7 @@ export const reducer = createReducer(initialState,
     return { ...state, loading: false };
   }),
 );
+
+export function reducer(state: AppState | undefined, action: Action) {
+  return reducerApp(state, action);
+} 

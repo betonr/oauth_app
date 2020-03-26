@@ -6,6 +6,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { closeLoading, showLoading } from 'src/app/app.action';
 import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
+import { User } from '../user.interface';
 
 @Component({
   templateUrl: './create-user.component.html',
@@ -13,7 +14,7 @@ import { Router } from '@angular/router';
 })
 export class CreateUserComponent implements OnInit {
 
-  public user: object;
+  public user: User;
   public formCreateUser: FormGroup;
   public authorized = null;
   public hide = true;
@@ -51,7 +52,7 @@ export class CreateUserComponent implements OnInit {
       name: '',
       email: '',
       institution: '',
-      occupation: [],
+      occupation: '',
       password: '',
       confirm_password: '',
       admin: false

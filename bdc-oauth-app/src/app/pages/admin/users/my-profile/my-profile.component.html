@@ -9,10 +9,10 @@
 
     <!-- BOX INFO USER -->
     <div class="admin-myprofile_infos" *ngIf="userInfo">
-        <p><b>Name:</b> {{ userInfo.name }}</p>
-        <p><b>E-mail:</b> {{ userInfo.email }}</p>
-        <p><b>Username:</b> {{ userInfo.credential.username }}</p>
-        <p><b>Create at:</b> {{ getDateFormated(userInfo.created_at) }}</p>
+        <p><b>Name:</b> {{ userInfo['name'] }}</p>
+        <p><b>E-mail:</b> {{ userInfo['email'] }}</p>
+        <p><b>Username:</b> {{ userInfo['credential']['username'] }}</p>
+        <p><b>Create at:</b> {{ getDateFormated(userInfo['created_at']) }}</p>
     </div>
 
     <form [formGroup]="formEditUser"
