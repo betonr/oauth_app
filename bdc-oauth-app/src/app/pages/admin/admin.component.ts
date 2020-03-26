@@ -3,6 +3,8 @@ import { MatSidenav } from '@angular/material';
 import { AuthState } from '../auth/auth.state';
 import { Store, select } from '@ngrx/store';
 import { Router } from '@angular/router';
+import { getCookie } from 'src/app/shared/helpers/Cookie';
+import { Logout } from '../auth/auth.action';
 
 
 @Component({
@@ -20,6 +22,11 @@ export class AdminComponent {
         this.router.navigate(['/auth/login']);
       }
     });
+
+    if (!getCookie('oauth.dpi.inpe.br')) {
+      this.store.dispatch(Logout());
+      this.router.navigate(['/auth/login']);
+    }
   }
 
   /** component reference sidenav */
