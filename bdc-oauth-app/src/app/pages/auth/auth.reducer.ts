@@ -19,7 +19,7 @@ const reducerAuth = createReducer(initialState,
   on(Login, (state, payload) => {
     localStorage.setItem('user', JSON.stringify(payload));
     const expiredSeconds = (new Date(payload['expired_date']).getTime() - new Date().getTime()) / 1000;
-    document.cookie = `oauth.dpi.inpe.br=${payload['token'].toString()}; Domain=localhost; max-age=${expiredSeconds}"; path=/`;
+    document.cookie = `oauth.dpi.inpe.br=${payload['token'].toString()}; Domain=.inpe.br; max-age=${expiredSeconds}"; path=/`;
     return { 
       ...state,
       userId: payload['userId'].toString(),
@@ -29,7 +29,7 @@ const reducerAuth = createReducer(initialState,
   }),
   on(Logout, (state) => {
     localStorage.removeItem('user');
-    document.cookie = `oauth.dpi.inpe.br=''; Domain=localhost; max-age=0; path=/`;
+    document.cookie = `oauth.dpi.inpe.br=''; Domain=.inpe.br; max-age=0; path=/`;
     return { ...state, userId: '', token: '', grants: '' };
   })
 );
