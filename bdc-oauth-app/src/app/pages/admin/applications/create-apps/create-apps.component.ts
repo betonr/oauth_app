@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { showLoading, closeLoading } from 'src/app/app.action';
 import { MatSnackBar } from '@angular/material';
+import { Client } from '../applications.interface';
 
 @Component({
   templateUrl: './create-apps.component.html',
@@ -14,7 +15,7 @@ import { MatSnackBar } from '@angular/material';
 export class CreateAppsComponent {
 
   public authorized = null;
-  public client = {};
+  public client: Client = null;
   public formCreateApp: FormGroup;
   public hide = true;
 

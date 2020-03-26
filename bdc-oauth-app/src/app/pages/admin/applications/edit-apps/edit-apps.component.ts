@@ -8,6 +8,7 @@ import { UsersService } from '../../users/users.service';
 import { showLoading, closeLoading } from 'src/app/app.action';
 import { MatSnackBar, MatDialog } from '@angular/material';
 import { ConfirmDialog } from 'src/app/shared/components/confirm-dialog/confirm-dialog.component';
+import { Client } from '../applications.interface';
 
 @Component({
   templateUrl: './edit-apps.component.html',
@@ -17,7 +18,7 @@ export class EditAppsComponent implements OnInit {
 
   public authorized = null;
   public notApps = null;
-  public client = {};
+  public client: Client = null;
   public formEditApp: FormGroup;
   public authors: object[];
   public authorsAvailable: object[];
@@ -97,14 +98,14 @@ export class EditAppsComponent implements OnInit {
       this.store.dispatch(showLoading());
       if (this.formEditApp.status === 'VALID') {
         const application = {
-          'client_name': this.client['client_name'],
-          'client_uri': this.client['client_uri'],
-          'redirect_uri': this.client['redirect_uri'],
-          'type_secret': this.client['type_secret'],
-          'client_secret': this.client['client_secret']
+          'client_name': this.client.client_name,
+          'client_uri': this.client.client_uri,
+          'redirect_uri': this.client.redirect_uri,
+          'type_secret': this.client.type_secret,
+          'client_secret': this.client.client_secret
         }
   
-        const response = await this.as.updateApplicationById(this.client['_id'], application);
+        const response = await this.as.updateApplicationById(this.client._id, application);
         if (response) {
           this.snackBar.open('Successfully edited Client!', '', {
             duration: 4000,
@@ -136,7 +137,7 @@ export class EditAppsComponent implements OnInit {
         throw 'Select one author!';
 
       } else {
-        const response = await this.as.addAuthorById(this.client['_id'], this.author);
+        const response = await this.as.addAuthorById(this.client._id, this.author);
         if (response) {
           this.snackBar.open('Author added!', '', {
             duration: 4000,
@@ -166,7 +167,7 @@ export class EditAppsComponent implements OnInit {
     try {
       this.store.dispatch(showLoading());
 
-      const response = await this.as.removeAuthorById(this.client['_id'], id);
+      const response = await this.as.removeAuthorById(this.client._id, id);
       if (response) {
         this.snackBar.open('Author removed!', '', {
           duration: 4000,
