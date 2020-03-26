@@ -2,9 +2,7 @@ import { Component } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { AppState } from './app.state';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { Logout } from './pages/auth/auth.action';
 import { Router } from '@angular/router';
-import { getCookie } from './shared/helpers/Cookie';
 
 /**
  * First application component
@@ -29,10 +27,5 @@ export class AppComponent {
         this.spinner.hide();
       }
     });
-
-    if (!getCookie('oauth.dpi.inpe.br')) {
-      this.store.dispatch(Logout());
-      this.router.navigate(['/auth/login']);
-    }
   }
 }
