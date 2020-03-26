@@ -49,7 +49,7 @@ export class LoginApplicationComponent implements OnInit {
     this.url = this.route.snapshot.queryParams['url'];
     this.scope = this.route.snapshot.queryParams['scope'];
     this.application = this.route.snapshot.paramMap['params'].app_name;
-    const tokenCookie = getCookie('oauth.obt.inpe.br').replace('oauth.obt.inpe.br', '');
+    const tokenCookie = getCookie('oauth.dpi.inpe.br').replace('oauth.dpi.inpe.br', '');
 
     if (!this.application) {
       this.router.navigate(['/auth/login']);

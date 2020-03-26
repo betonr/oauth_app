@@ -57,9 +57,10 @@ export class LoginComponent {
         };
         const response = await this.as.login(credentials);
         this.store.dispatch(Login({
-          userId  : response.user_id,
-          grants : response.grants,
-          token : response.access_token
+          userId: response.user_id,
+          grants: response.grants,
+          token: response.access_token,
+          expired_date: response.expired_date
         }));
         this.error = {};
         this.router.navigate(['/admin/my']);
