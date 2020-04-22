@@ -20,3 +20,9 @@ Make sure you have the following libraries installed:
 
 - To development or Manual Build => [`bdc-oauth-app`](./bdc-oauth-app)
 - With Docker => [`deploy`](./deploy)
+
+## License
+
+Copyright (C) 2019-2020 INPE.
+
+OBT OAuth 2.0 APP is free software; you can redistribute it and/or modify it under the terms of the MIT License; see LICENSE file for more details.

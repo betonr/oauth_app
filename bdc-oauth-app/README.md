@@ -1,6 +1,6 @@
 # Oauth APP - WEB APPLICATION
 
-Web App to manage OBT Oauth Server 
+Web App to manage OBT OAuth 2.0 Server 
 
 - [`Documentation`](https://github.com/brazil-data-cube/oauth-app/tree/master/docs)
 
