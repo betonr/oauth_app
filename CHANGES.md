@@ -10,4 +10,4 @@ Released 2020-03-23
 - The documentation is made with the [`compodoc`](https://compodoc.app/) plugin
 - Deploy on Docker containers.
 - Installation and Deployment instructions.
-- License: `MIT <https://github.com/brazil-data-cube/oauth_app/blob/b-0.2/LICENSE>`_.
+- License: [`MIT`](https://github.com/brazil-data-cube/oauth_app/blob/b-0.2/LICENSE).
