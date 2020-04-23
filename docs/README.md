@@ -7,7 +7,7 @@ the documentation of the application is made with the "[`compodoc`](https://comp
 ```
 cd ../bdc-oauth-app
 npm i
-npm run docs
+npm run doc
 ```
 
 After that, you can serve these HTML files with command:
