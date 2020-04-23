@@ -5,7 +5,7 @@
 Released 2020-03-23
 
 - First experimental version.
-- Layout with MAterial Design.
+- Layout with Material Design.
 - Based on master-details model.
 - The documentation is made with the "[`compodoc`](https://compodoc.app/)" plugin
 - Deploy on Docker containers.
