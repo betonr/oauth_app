@@ -8,6 +8,7 @@ import { AppState } from 'src/app/app.state';
 import { Login } from '../auth.action';
 import { Router } from '@angular/router';
 import { ErrorMsg } from 'src/app/shared/helpers/interfaces';
+import { UsersService } from '../../admin/users/users.service';
 
 /**
  * login page component
@@ -18,14 +19,14 @@ import { ErrorMsg } from 'src/app/shared/helpers/interfaces';
 })
 export class LoginComponent {
 
-  public username: string;
-  public password: string;
   public formLogin: FormGroup;
+  public formRecover: FormGroup;
   public error: ErrorMsg;
   public view = 'login';
 
   constructor(
     private as: AuthService,
+    private us: UsersService,
     private store: Store<AppState>,
     public router: Router,
     private snackBar: MatSnackBar,
@@ -40,6 +41,10 @@ export class LoginComponent {
         username: ['', [Validators.required]],
         password: ['', [Validators.required]]
       });
+
+      this.formRecover = this.fb.group({
+        username: ['', [Validators.required]]
+      });
   }
 
   public async login() {
@@ -53,8 +58,8 @@ export class LoginComponent {
         this.store.dispatch(showLoading());
 
         const credentials = {
-          username: this.username,
-          password: this.password
+          username: this.formLogin.get('username').value,
+          password: this.formLogin.get('password').value
         };
         const response = await this.as.login(credentials);
         this.store.dispatch(Login({
@@ -74,6 +79,44 @@ export class LoginComponent {
 
       } catch (err) {
         const message = err.error.message ? err.error.message : 'Authentication Error!';
+        this.error = {
+          type: 'error',
+          message
+        };
+
+      } finally {
+        this.store.dispatch(closeLoading());
+      }
+    }
+  }
+
+  public async recover() {
+    if (this.formRecover.status !== 'VALID') {
+      this.error = {
+        type: 'error',
+        message: 'Fill in all fields!'
+      };
+    } else {
+      try {
+        this.store.dispatch(showLoading());
+
+        const data = {
+          username: this.formRecover.get('username').value
+        };
+        const response = await this.us.recoverPass(data);
+        this.error = {
+          type: 'warning',
+          message: 'Check your spam!'
+        };
+        
+        this.snackBar.open('We send a link to your email!', '', {
+          duration: 10000,
+          verticalPosition: 'top',
+          panelClass: 'app_snack-bar-success'
+        });
+
+      } catch (err) {
+        const message = err.error.message ? err.error.message : 'Error when trying to recover your password!';
         this.error = {
           type: 'error',
           message

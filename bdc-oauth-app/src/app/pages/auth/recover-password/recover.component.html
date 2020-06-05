@@ -1,0 +1,32 @@
+<section class="page-login">
+    <div class="form">
+        <div class="thumbnail">
+            <img src="/assets/images/obt.png" alt="logo" />
+        </div>
+
+        <app-alert *ngIf="error" [type]="error.type" [message]="error.message">
+        </app-alert>
+
+        <form class="login-form" 
+            [formGroup]="formChangePass" 
+            (ngSubmit)="change()">
+            
+            <label for="login-input-password">Password</label>
+            <input type="password" id="login-input-password" name="password" 
+                formControlName="password" required />
+
+            <label for="login-input-confirmpassword">Password confirmation</label>
+            <input type="password" id="login-input-confirmpassword" name="confirmPassword" 
+                formControlName="confirmPassword" required />
+
+            <button type="submit">Save</button>
+            <p class="message">Login? <a routerLink="/auth/login">Click here</a></p>
+        </form>
+    </div>
+
+    <div class="container">
+        <div class="info">
+            <span><a href="http://www.obt.inpe.br/OBT" target="_blank"> &copy; OBT - Coordenação-Geral de Observação da Terra</a></span> 
+        </div>
+    </div>
+</section>
