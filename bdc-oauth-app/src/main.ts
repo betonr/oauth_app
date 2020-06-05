@@ -16,13 +16,5 @@ if (environment.production) {
   enableProdMode();
 }
 
-import { init as initApm } from 'elastic-apm-js-base';
-initApm({
-  serviceName: 'oauth_app',
-  logLevel: 'error',
-  active: false,
-  serverUrl: window['__env'].urlAPMServer,
-})
-
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
