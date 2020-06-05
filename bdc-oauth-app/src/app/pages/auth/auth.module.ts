@@ -9,6 +9,7 @@ import { MatInputModule, MatButtonModule, MatIconModule, MatSnackBarModule } fro
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AuthRoutingModule } from './auth-routing.module';
+import { RecoverPasswordComponent } from './recover-password/recover.component';
 
 /**
  * Auth Module
@@ -17,6 +18,7 @@ import { AuthRoutingModule } from './auth-routing.module';
 @NgModule({
   declarations: [
     LoginComponent,
+    RecoverPasswordComponent,
     LoginApplicationComponent
   ],
   imports: [

@@ -70,6 +70,33 @@ export class UsersService {
     }
 
     /**
+     * recover password
+     */
+    public async recoverPass(data: object): Promise<any> {
+        const urlSuffix = `/users/send-password`;
+        const response = await this.http.post(`${this.urlOauth}${urlSuffix}`, data).toPromise();
+        return response;
+    }
+
+    /**
+     * valid token used to recover password
+     */
+    public async validTokenPassword(token: string): Promise<any> {
+        const urlSuffix = `/users/valid-token-password/${token}`;
+        const response = await this.http.post(`${this.urlOauth}${urlSuffix}`, {}).toPromise();
+        return response;
+    }
+
+    /**
+     * change password by token
+     */
+    public async changePasswordByToken(data: object): Promise<any> {
+        const urlSuffix = `/users/reset-password`;
+        const response = await this.http.put(`${this.urlOauth}${urlSuffix}`, data).toPromise();
+        return response;
+    }
+
+    /**
      * get User by ID
      */
     public async getUserById(userId: string): Promise<any> {

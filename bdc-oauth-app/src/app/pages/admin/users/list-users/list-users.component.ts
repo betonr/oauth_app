@@ -28,14 +28,14 @@ export class ListUsersComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.displayedColumns = ['name', 'email', 'institution', 'occupation', 'admin', 'date'];
+    this.displayedColumns = ['name', 'username', 'email', 'institution', 'admin', 'date'];
     this.getUsers();
   }
 
   private async getUsers() {
     try {
       const response = await this.us.getUsers();
-      this.dataSource = response.users;
+      this.dataSource = response.users.map(u => { return {...u, username: u['credential']['username']} });
     } catch(err) {
       if (err.status && err.status == 403) {
         this.authorized = false;

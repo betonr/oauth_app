@@ -7,12 +7,16 @@
         <app-alert *ngIf="error" [type]="error.type" [message]="error.message">
         </app-alert>
 
-        <form class="forgot-form" *ngIf="view == 'password'">
-            <label for="login-email">Digite seu e-mail</label>
-            <input type="text" id="login-email" />
+        <form class="forgot-form"
+            [formGroup]="formRecover" 
+            (ngSubmit)="recover()" 
+            *ngIf="view == 'password'">
+            <label for="login-username">Username</label>
+            <input type="text" id="login-username" 
+                formControlName="username" name="username" required />
             
-            <button>Enviar</button>
-            <p class="message">Esqueceu sua senha? <a (click)="changeView('login')">Clique aqui</a></p>
+            <button type="submit">Send</button>
+            <p class="message">Login: <a (click)="changeView('login')">Click here</a></p>
         </form>
 
         <form class="login-form" 
@@ -21,15 +25,15 @@
             *ngIf="view == 'login'">
             
             <label for="login-input-user">Username</label>
-            <input type="text" id="login-input-user" [(ngModel)]="username"
+            <input type="text" id="login-input-user"
                 formControlName="username" name="username" required />
 
             <label for="login-input-password">Password</label>
             <input type="password" id="login-input-password" name="password" 
-                [(ngModel)]="password" formControlName="password" required />
+                formControlName="password" required />
 
-            <button type="submit">Entrar</button>
-            <p class="message">Esqueceu sua senha? <a (click)="changeView('password')">Clique aqui</a></p>
+            <button type="submit">Login</button>
+            <p class="message">Forgot your password ? <a (click)="changeView('password')">Click here</a></p>
         </form>
     </div>
 
