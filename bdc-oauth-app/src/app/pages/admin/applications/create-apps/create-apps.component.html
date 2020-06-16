@@ -23,7 +23,6 @@
                     <input matInput
                         name="client_name"
                         formControlName="client_name"
-                        [(ngModel)]="client.client_name"
                         required>
                 </mat-form-field>
 
@@ -32,7 +31,6 @@
                     <input matInput
                         name="client_uri"
                         formControlName="client_uri"
-                        [(ngModel)]="client.client_uri"
                         required>
                 </mat-form-field>
             </div>
@@ -41,7 +39,6 @@
                 <mat-form-field appearance="fill">
                     <mat-label>Type Secret</mat-label>
                     <mat-select 
-                        [(ngModel)]="client.type_secret" 
                         formControlName="type_secret" 
                         required>
                         <mat-option *ngFor="let type of ['string', 'file']" [value]="type">
@@ -54,7 +51,6 @@
                     <mat-label>Secret</mat-label>
                     <input matInput
                         formControlName="client_secret"
-                        [(ngModel)]="client.client_secret"
                         [type]="hide ? 'password' : 'text'"
                         required>
                     <button mat-icon-button matSuffix type="button" (click)="hide = !hide">
@@ -69,7 +65,6 @@
                     <input matInput
                         name="redirect_uri"
                         formControlName="redirect_uri"
-                        [(ngModel)]="client.redirect_uri"
                         required>
                 </mat-form-field>
             </div>
