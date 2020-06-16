@@ -6,7 +6,6 @@ import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { showLoading, closeLoading } from 'src/app/app.action';
 import { MatSnackBar } from '@angular/material';
-import { Client } from '../applications.interface';
 
 @Component({
   templateUrl: './create-apps.component.html',
@@ -15,7 +14,6 @@ import { Client } from '../applications.interface';
 export class CreateAppsComponent {
 
   public authorized = null;
-  public client: Client = null;
   public formCreateApp: FormGroup;
   public hide = true;
 
@@ -46,13 +44,13 @@ export class CreateAppsComponent {
       this.store.dispatch(showLoading());
       if (this.formCreateApp.status === 'VALID') {
         const application = {
-          'client_name': this.client['client_name'],
-          'client_uri': this.client['client_uri'],
-          'redirect_uri': this.client['redirect_uri'],
-          'type_secret': this.client['type_secret'],
-          'client_secret': this.client['client_secret']
+          'client_name': this.formCreateApp.get('client_name').value,
+          'client_uri': this.formCreateApp.get('client_uri').value,
+          'redirect_uri': this.formCreateApp.get('redirect_uri').value,
+          'type_secret': this.formCreateApp.get('type_secret').value,
+          'client_secret': this.formCreateApp.get('client_secret').value
         }
-  
+        
         const response = await this.as.createApplication(application);
         if (response) {
           this.snackBar.open('App created!', '', {
