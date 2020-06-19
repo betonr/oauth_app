@@ -1,10 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { LoginComponent } from '../../auth/login/login.component';
-import { MatDialog, MatSnackBar } from '@angular/material';
-import { AuthState } from '../../auth/auth.state';
-import { Store, select } from '@ngrx/store';
-import { Logout } from '../../auth/auth.action';
+import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
+import { OAuthService } from 'angular-oauth2-oidc';
 
 /**
  * Toolbar component
@@ -21,7 +18,7 @@ export class ToolbarComponent {
   constructor(
     private snackBar: MatSnackBar,
     public router: Router,
-    private store: Store<AuthState>) {}
+    private oauthService: OAuthService) {}
 
   /** pointer to issue event to explore component */
   @Output() toggleToEmit = new EventEmitter();
@@ -37,7 +34,8 @@ export class ToolbarComponent {
    * Logout in application and redirect to explore page
    */
   logout() {
-    this.store.dispatch(Logout());
+    this.oauthService.logOut();
+    this.oauthService.revokeTokenAndLogout();
     this.router.navigate(['/auth/login']);
     this.snackBar.open('Logout Successfully!', '', {
       duration: 2000,

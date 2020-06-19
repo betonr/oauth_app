@@ -1,45 +1,8 @@
-<section class="page-login">
-    <div class="form">
-        <div class="thumbnail">
-            <img src="/assets/images/obt.png" alt="logo" />
-        </div>
-
-        <app-alert *ngIf="error" [type]="error.type" [message]="error.message">
-        </app-alert>
-
-        <form class="forgot-form"
-            [formGroup]="formRecover" 
-            (ngSubmit)="recover()" 
-            *ngIf="view == 'password'">
-            <label for="login-username">Username</label>
-            <input type="text" id="login-username" 
-                formControlName="username" name="username" required />
-            
-            <button type="submit">Send</button>
-            <p class="message">Login: <a (click)="changeView('login')">Click here</a></p>
-        </form>
-
-        <form class="login-form" 
-            [formGroup]="formLogin" 
-            (ngSubmit)="login()" 
-            *ngIf="view == 'login'">
-            
-            <label for="login-input-user">Username</label>
-            <input type="text" id="login-input-user"
-                formControlName="username" name="username" required />
-
-            <label for="login-input-password">Password</label>
-            <input type="password" id="login-input-password" name="password" 
-                formControlName="password" required />
-
-            <button type="submit">Login</button>
-            <p class="message">Forgot your password ? <a (click)="changeView('password')">Click here</a></p>
-        </form>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <h2>Login with BDC</h2>
+        <p>
+            <button class="btn btn-default" (click)="loginCode()">Login</button>
+        </p>
     </div>
-
-    <div class="container">
-        <div class="info">
-            <span><a href="http://www.obt.inpe.br/OBT" target="_blank"> &copy; OBT - Coordenação-Geral de Observação da Terra</a></span> 
-        </div>
-    </div>
-</section>
+</div>

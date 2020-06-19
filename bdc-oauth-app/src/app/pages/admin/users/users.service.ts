@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { OAuthService } from 'angular-oauth2-oidc';
 
 /**
  * Service to get infos and features of catalog
@@ -11,7 +12,9 @@ export class UsersService {
     private urlOauth = window['__env'].urlOauth;
 
     /** start http service client */
-    constructor(private http: HttpClient) { }
+    constructor(
+        private http: HttpClient,
+        private oauthService: OAuthService ) { }
 
     /**
      * get All Users
@@ -99,12 +102,11 @@ export class UsersService {
     /**
      * get User by ID
      */
-    public async getUserById(userId: string): Promise<any> {
-        const urlSuffix = `/users/${userId}`;
-        const authenticationToken = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user'))['token'] : '';
+    public async getUserById(): Promise<any> {
+        const urlSuffix = `/profile`;
         const response = await this.http.get(`${this.urlOauth}${urlSuffix}`, {
             headers: {
-                Authorization: `Bearer ${authenticationToken}`
+                Authorization: `Bearer ${this.oauthService.getAccessToken()}`
             }
         }).toPromise();
         return response;

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { OAuthModule, OAuthStorage } from 'angular-oauth2-oidc';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,7 +9,6 @@ import { StoreModule } from '@ngrx/store';
 import { SharedModule } from './shared/shared.module';
 import { AdminModule } from './pages/admin/admin.module';
 import * as fromApp from './app.reducer';
-import * as fromAuth from './pages/auth/auth.reducer';
 
 /**
  * Initial Module of Application (SPA)
@@ -23,11 +23,14 @@ import * as fromAuth from './pages/auth/auth.reducer';
     AppRoutingModule,
     SharedModule,
     AdminModule,
+    OAuthModule.forRoot(),
     StoreModule.forRoot({
-      app: fromApp.reducer,
-      auth: fromAuth.reducer
+      app: fromApp.reducer
     })
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [
+    { provide: OAuthStorage, useValue: localStorage }
+  ]
 })
 export class AppModule { }

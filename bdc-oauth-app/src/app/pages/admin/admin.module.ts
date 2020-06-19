@@ -72,7 +72,7 @@ import { AddPermissionsComponent } from './applications/permissions-apps/add-per
     MatMenuModule
   ],
   entryComponents: [
-    AddPermissionsComponent
+    // AddPermissionsComponent
   ]
 })
 export class AdminModule { }

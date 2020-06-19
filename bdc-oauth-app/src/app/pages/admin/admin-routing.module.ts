@@ -10,14 +10,14 @@ import { PermissionsAppsComponent } from './applications/permissions-apps/permis
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/admin/my', pathMatch: 'full' },
-  { path: 'users', component: ListUsersComponent },
-  { path: 'apps', component: ListAppsComponent },
-  { path: 'apps/create', component: CreateAppsComponent },
-  { path: 'apps/:id/permissions', component: PermissionsAppsComponent },
-  { path: 'apps/:id', component: EditAppsComponent },
-  { path: 'users/create', component: CreateUserComponent },
-  { path: 'my', component: MyProfileComponent }
+  // { path: 'users', component: ListUsersComponent },
+  // { path: 'apps', component: ListAppsComponent },
+  // { path: 'apps/create', component: CreateAppsComponent },
+  // { path: 'apps/:id/permissions', component: PermissionsAppsComponent },
+  // { path: 'apps/:id', component: EditAppsComponent },
+  // { path: 'users/create', component: CreateUserComponent },
+  { path: 'my', component: MyProfileComponent },
+  { path: '', redirectTo: '/dash/my', pathMatch: 'full' } 
 ];
 
 

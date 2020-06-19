@@ -28,14 +28,6 @@ export class MyProfileComponent implements OnInit {
     private snackBar: MatSnackBar,
     public router: Router,
     private fb: FormBuilder) {
-      this.store.pipe(select('auth')).subscribe(res => {
-        if (res.userId && res.token && res.grants) {
-            this.userId = res.userId;
-        } else {
-            this.userId = null;
-            this.router.navigate(['/admin/my']);
-        }
-      });
       this.formEditUser = this.fb.group({
         institution: ['', [Validators.required]],
         occupation: [''],
@@ -48,7 +40,7 @@ export class MyProfileComponent implements OnInit {
 
   ngOnInit() {
     this.resetForm(false);
-    this.getUserInfo();
+    // this.getUserInfo();
   }
 
   private resetForm(onlyPass: boolean) {
@@ -69,10 +61,11 @@ export class MyProfileComponent implements OnInit {
 
   private async getUserInfo() {
     try {
-      const response = await this.us.getUserById(this.userId);
-      this.userInfo = response;
-      this.aditionalInfos.institution = this.userInfo['institution']; 
-      this.aditionalInfos.occupation = this.userInfo['occupation']; 
+      const response = await this.us.getUserById();
+      console.log(response)
+      // this.userInfo = response;
+      // this.aditionalInfos.institution = this.userInfo['institution']; 
+      // this.aditionalInfos.occupation = this.userInfo['occupation']; 
 
     } catch(err) {}
   }

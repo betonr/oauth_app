@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Store, select } from '@ngrx/store';
-import { AuthState } from '../../auth/auth.state';
 
 /**
  * Sidenav component
@@ -18,12 +16,8 @@ export class SidenavComponent {
   public links = [];
 
   constructor(
-    private router: Router,
-    private store: Store<AuthState>) {
+    private router: Router) {
     let grants = [];
-    this.store.pipe(select('auth')).subscribe(res => {
-      grants = res.grants || [];
-    });
 
     this.links = [
       {
